@@ -1,57 +1,91 @@
-# Ecom-Marketing-Site
+<div align="center">
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
+# 🛍️ Ecom Marketing Site
 
-> **Showcase** — ~15% skeleton. Core implementation not included.
+[![HTML5](https://img.shields.io/badge/HTML5-semantic-E34F26?style=flat-square&logo=html5&logoColor=white)](.)
+[![CSS3](https://img.shields.io/badge/CSS3-animations-1572B6?style=flat-square&logo=css3&logoColor=white)](.)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](.)
+[![Font Awesome](https://img.shields.io/badge/Font_Awesome-6-528DD7?style=flat-square&logo=fontawesome&logoColor=white)](https://fontawesome.com)
 
-Three-page static marketing site for a TikTok e-commerce SaaS product. Built as a study of SaaS marketing site structure and conversion patterns.
+**3-page static marketing site for an AI e-commerce video ads platform — vanilla HTML / CSS / JS, no build step**
 
-## Stack
+> ⚠️ **Showcase Only** — ~15% skeleton. Product images and video assets not included.
 
-- Vanilla HTML5, CSS3, JavaScript
-- Font Awesome (icons)
+</div>
 
-## Pages
+---
 
-| Page | Path | Description |
-|------|------|-------------|
-| Homepage | `index.html` | Hero, auto-scroll social proof strip, feature grid |
-| Sign-up | `signup.html` | Email/password form with plan selector |
-| Dashboard | `dashboard.html` | Logged-in user view with usage stats |
+## ✨ Overview
 
-## Usage
+A front-end marketing website built from scratch to study how SaaS products structure their conversion funnel: landing page → sign-up → dashboard. No frameworks, no bundler — pure HTML5 / CSS3 / ES6+.
 
-No build step required. Open directly in a browser or serve with any static file server:
+**Three pages:**
 
-```bash
-# Python
-python -m http.server 8080
+| Page | File | Purpose |
+|---|---|---|
+| Homepage | `index.html` | Hero + auto-scroll social proof + feature grid |
+| Sign-up | `signup.html` | Registration form with client-side validation |
+| Dashboard | `dashboard.html` | Post-login stats overview + sidebar nav |
 
-# Node.js
-npx serve .
+---
 
-# Or just open index.html in a browser
+## 🏗️ Architecture
+
+```
+  ┌─────────────┐    ┌──────────────┐    ┌───────────────┐
+  │  index.html │───►│ signup.html  │───►│dashboard.html │
+  │  (landing)  │    │  (register)  │    │  (app shell)  │
+  └──────┬──────┘    └──────────────┘    └───────────────┘
+         │
+  style.css          dashboard.css        script.js
+  (global)           (sidebar + cards)    (scroll fx + nav)
 ```
 
-## Structure
+Key CSS techniques:
+
+```css
+/* Auto-scrolling social proof strip */
+.scroll-track {
+  display: flex;
+  animation: scroll-left 20s linear infinite;
+}
+
+/* Scroll-triggered fade-in */
+/* IntersectionObserver → opacity 0 → 1 + translateY */
+
+/* Navbar blur on scroll */
+/* window scroll event → backdropFilter: blur(10px) */
+```
+
+---
+
+## 📁 Structure
 
 ```
 Ecom-Marketing-Site/
-├── index.html
-├── signup.html
-├── dashboard.html
-├── css/
-│   ├── main.css
-│   ├── components.css
-│   └── dashboard.css
-├── js/
-│   ├── main.js
-│   └── social-proof-strip.js   # auto-scroll ticker
-└── assets/
-    ├── images/
-    └── icons/
+├── index.html        # homepage
+├── signup.html       # sign-up / login
+├── dashboard.html    # user dashboard
+├── style.css         # global styles
+├── dashboard.css     # dashboard-specific styles
+├── script.js         # scroll animations, navbar
+└── images/           # product screenshots (not included)
 ```
 
-## Design Notes
+---
 
-The social proof strip on the homepage auto-scrolls a list of recent "conversions" to simulate activity. The feature grid uses a CSS grid layout that collapses to a single column on mobile. No frameworks, no build tooling.
+## 🔧 Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Markup | HTML5 (semantic) |
+| Styling | CSS3 — custom properties, Flexbox, Grid, keyframes |
+| Scripting | Vanilla JavaScript ES6+ |
+| Icons | Font Awesome 6 |
+| Build | None — open directly in browser |
+
+---
+
+<div align="center">
+<sub>Showcase version · Product assets not included · For portfolio reference only</sub>
+</div>
