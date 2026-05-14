@@ -1,0 +1,56 @@
+/* Global Styles — Showcase skeleton */
+
+:root {
+    --primary: #7B2FBE;
+    --primary-dark: #5c1fa0;
+    --accent: #FFD700;
+    --bg: #0a0a0a;
+    --text: #ffffff;
+    --text-muted: #888;
+    --card-bg: #111111;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar-container { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background 0.3s; }
+.navbar { max-width: 1200px; margin: 0 auto; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; }
+.logo span { color: var(--primary); }
+.get-started-btn { padding: 0.6rem 1.4rem; background: var(--primary); color: white; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.2s; }
+.get-started-btn:hover { background: var(--primary-dark); }
+
+/* Hero */
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; }
+.hero h1 { font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; line-height: 1.1; }
+.badge { display: inline-block; padding: 0.4rem 1rem; background: #1a1a1a; border: 1px solid #333; border-radius: 999px; font-size: 0.875rem; margin-bottom: 2rem; }
+.hero p { margin: 1.5rem 0; font-size: 1.2rem; color: var(--text-muted); max-width: 600px; }
+.nav-btn { padding: 0.8rem 2rem; background: var(--primary); color: white; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+
+/* Auto-scroll strip */
+.scroll-mask { overflow: hidden; width: 100%; margin-top: 3rem; }
+.scroll-container { display: flex; }
+.scroll-track { display: flex; gap: 1rem; animation: scroll-left 20s linear infinite; }
+@keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* Features */
+.features { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+.features h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+.feature-card { background: var(--card-bg); padding: 2rem; border-radius: 16px; border: 1px solid #222; text-align: center; transition: transform 0.2s; }
+.feature-card:hover { transform: translateY(-4px); }
+.feature-card i { font-size: 2rem; color: var(--primary); margin-bottom: 1rem; }
+.feature-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+.feature-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+/* Footer */
+footer { padding: 2rem; text-align: center; color: var(--text-muted); border-top: 1px solid #222; }
+
+/* Full styles not included in showcase */
