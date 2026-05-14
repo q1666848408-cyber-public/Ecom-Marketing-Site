@@ -1,108 +1,57 @@
 # Ecom-Marketing-Site
 
-> ⚠️ Showcase Only — Core implementation not included.
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
-A three-page static marketing website for an AI-powered e-commerce video ads platform. Built as a learning exercise to study the structure, layout patterns, and interaction design common to modern SaaS marketing sites.
+> **Showcase** — ~15% skeleton. Core implementation not included.
 
----
-
-## Pages
-
-| Route | Purpose |
-|---|---|
-| `/` | Homepage — hero section, social proof strip, feature grid |
-| `/signup` | Registration / onboarding entry point |
-| `/dashboard` | User dashboard preview |
+Three-page static marketing site for a TikTok e-commerce SaaS product. Built as a study of SaaS marketing site structure and conversion patterns.
 
 ## Stack
 
-No build tools, no framework — intentionally minimal to keep the focus on fundamentals.
+- Vanilla HTML5, CSS3, JavaScript
+- Font Awesome (icons)
 
-| Layer | Technology |
-|---|---|
-| Markup | HTML5 (semantic elements) |
-| Styling | CSS3 — custom properties, Grid, Flexbox, keyframe animations |
-| Scripting | Vanilla JavaScript ES6+ |
-| Icons | Font Awesome 6 |
+## Pages
 
-## Notable Implementation Details
+| Page | Path | Description |
+|------|------|-------------|
+| Homepage | `index.html` | Hero, auto-scroll social proof strip, feature grid |
+| Sign-up | `signup.html` | Email/password form with plan selector |
+| Dashboard | `dashboard.html` | Logged-in user view with usage stats |
 
-### Auto-Scrolling Social Proof Strip
-The homepage includes a continuous horizontal ticker of logos/testimonials implemented purely in CSS:
+## Usage
 
-```css
-@keyframes scroll-left {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
+No build step required. Open directly in a browser or serve with any static file server:
 
-.ticker-track {
-  display: flex;
-  animation: scroll-left 30s linear infinite;
-}
+```bash
+# Python
+python -m http.server 8080
+
+# Node.js
+npx serve .
+
+# Or just open index.html in a browser
 ```
 
-Content is duplicated inside the track so the loop is seamless with no JavaScript.
-
-### Scroll-Triggered Fade-In
-Section reveals use the `IntersectionObserver` API — no scroll event listeners, no layout thrash:
-
-```js
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-```
-
-### Navbar Blur on Scroll
-The navigation bar transitions from transparent to a frosted-glass background once the user scrolls past the hero:
-
-```js
-window.addEventListener('scroll', () => {
-  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60);
-});
-```
-
-```css
-nav.scrolled {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-```
-
-## Layout Architecture
+## Structure
 
 ```
-┌─────────────────────────────────┐
-│  Navbar (sticky, blur-on-scroll)│
-├─────────────────────────────────┤
-│  Hero                           │
-│    headline + CTA + product img │
-├─────────────────────────────────┤
-│  Social Proof Strip (auto-scroll│
-├─────────────────────────────────┤
-│  Feature Grid (3-col CSS Grid)  │
-├─────────────────────────────────┤
-│  Footer                         │
-└─────────────────────────────────┘
+Ecom-Marketing-Site/
+├── index.html
+├── signup.html
+├── dashboard.html
+├── css/
+│   ├── main.css
+│   ├── components.css
+│   └── dashboard.css
+├── js/
+│   ├── main.js
+│   └── social-proof-strip.js   # auto-scroll ticker
+└── assets/
+    ├── images/
+    └── icons/
 ```
 
-## Learning Objectives
+## Design Notes
 
-This project was built to internalize:
-
-- How SaaS marketing sites guide visitors from awareness to sign-up
-- CSS custom properties as a design token system (`--color-primary`, `--spacing-*`, etc.)
-- Performance-conscious animation (GPU-composited `transform`/`opacity` only)
-- Progressive enhancement — the page is fully readable with JavaScript disabled
-
-## Status
-
-Static files only; no backend, no build pipeline. Suitable as a starting template for lightweight marketing pages.
+The social proof strip on the homepage auto-scrolls a list of recent "conversions" to simulate activity. The feature grid uses a CSS grid layout that collapses to a single column on mobile. No frameworks, no build tooling.
